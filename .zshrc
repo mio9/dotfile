@@ -15,16 +15,13 @@ ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 alias ls='exa'
 alias l='exa'
 alias ll='exa -l'
-# alias nvim='lvim'
 alias vim='nvim'
 alias lg='lazygit'
-alias code='code-oss'
-alias cat='bat'
 
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+#export VOLTA_HOME="$HOME/.volta"
+#export PATH="$VOLTA_HOME/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+#export SDKMAN_DIR="$HOME/.sdkman"
+#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
