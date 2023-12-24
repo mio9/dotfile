@@ -12,9 +12,9 @@ zplug load
 
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 
-alias ls='exa'
-alias l='exa'
-alias ll='exa -l'
+alias ls='eza'
+alias l='eza'
+alias ll='eza -l'
 alias vim='nvim'
 alias lg='lazygit'
 
