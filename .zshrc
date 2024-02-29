@@ -6,7 +6,8 @@ export LANG=C
 # znap setup
 [[ -r ~/.znap/znap/znap.zsh ]] || git clone https://github.com/marlonrichert/zsh-snap.git ~/.znap/znap
 source ~/.znap/znap/znap.zsh
-znap eval starship "starship init zsh"
+znap eval starship "starship init zsh --print-full-init"
+znap prompt
 
 znap source ohmyzsh/ohmyzsh  plugins/git
 znap source "zsh-users/zsh-autosuggestions"
