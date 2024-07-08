@@ -24,7 +24,7 @@ alias ll='eza -l'
 alias vim='nvim'
 alias lg='lazygit'
 
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/go
 path+=$GOPATH/bin
 
 #export VOLTA_HOME="$HOME/.volta"
