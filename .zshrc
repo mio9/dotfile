@@ -24,6 +24,11 @@ alias ll='eza -l'
 alias vim='nvim'
 alias lg='lazygit'
 
+# custom commands
+mkcd () {
+  mkdir "$1" && cd "$1"
+}
+
 export GOPATH=$HOME/go
 path+=$GOPATH/bin
 
