@@ -30,9 +30,16 @@ mkcd () {
 }
 gj(){
   repo_path=$(git rev-parse --show-toplevel)
-  selection=$(ls $repo_path | fzf -q $1 -1)
-  cd $repo_path/$selection
+  if [[ -z "$repo_path" ]] then
+    echo "You are at $(pwd)";
+  elif [[ -z "$1" ]] then
+    cd $repo_path
+  else
+    selection=$(ls $repo_path | fzf -q $1 -1)
+    cd $repo_path/$selection
+  fi
 }
+
 
 
 export GOPATH=$HOME/go
