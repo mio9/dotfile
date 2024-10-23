@@ -28,6 +28,12 @@ alias lg='lazygit'
 mkcd () {
   mkdir "$1" && cd "$1"
 }
+gj(){
+  repo_path=$(git rev-parse --show-toplevel)
+  selection=$(ls $repo_path | fzf -q $1 -1)
+  cd $repo_path/$selection
+}
+
 
 export GOPATH=$HOME/go
 path+=$GOPATH/bin
