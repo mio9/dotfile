@@ -57,8 +57,10 @@ gj () {
   elif [[ -z "$1" ]] then
     cd $repo_path
   else
-    selection=$(cd $repo_path && ls -d **/ | grep -v "**node_modules**" | fzf --query="$1")
-    cd $repo_path/$selection
+    selection=$(cd $repo_path && find $repo_path -type d -maxdepth 2 | grep -v "node_modules" | fzf --query="$1")
+    if [[ -n "$selection" ]] then
+      cd $selection
+    fi
   fi
 }
 
