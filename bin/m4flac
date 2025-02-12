@@ -1,0 +1,6 @@
+#!/bin/bash
+echo Found following m4a files:
+ls *.m4a
+echo ----
+echo You sure?
+for i in *.m4a; do ffmpeg -i "$i" "${i%.*}.flac"; done
