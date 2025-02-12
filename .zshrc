@@ -68,6 +68,7 @@ eval "$(zoxide init zsh)"
 
 export GOPATH=$HOME/go
 path+=$GOPATH/bin
+path+=$HOME/bin
 
 #export VOLTA_HOME="$HOME/.volta"
 #export PATH="$VOLTA_HOME/bin:$PATH"
