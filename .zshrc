@@ -1,8 +1,3 @@
-# locale-gen
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LANG=C
-
 ### zinit setup
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -32,47 +27,35 @@ zinit light starship/starship
 # plugins
 zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
 
-zi light "zsh-users/zsh-autosuggestions"
-zi light "zsh-users/zsh-completions"
-zi light "changyuheng/zsh-interactive-cd"
-zi light "zsh-users/zsh-syntax-highlighting"
+zinit light "zsh-users/zsh-autosuggestions"
+zinit light "zsh-users/zsh-completions"
+zinit light "changyuheng/zsh-interactive-cd"
+zinit light "zsh-users/zsh-syntax-highlighting"
+zinit light "mio9/zsh-git-jump"
 
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 
-alias ls='eza'
-alias l='eza'
-alias ll='eza -l'
+
+alias ls='exa'
+alias l='ls'
+alias ll='exa -l'
+# alias nvim='lvim'
 alias vim='nvim'
 alias lg='lazygit'
+alias lad='lazydocker'
+alias t='tmux'
 alias zl='zellij'
+alias zt='zerotier-cli'
 
-# custom commands
+whothefuckami(){
+  echo "Bruh wakeup, you're motherfucking $(whoami) mate, you even ask who tf you are..!?"
+}
 mkcd () {
   mkdir "$1" && cd "$1"
-}
-gj () {
-  repo_path=$(git rev-parse --show-toplevel)
-  if [[ -z "$repo_path" ]] then
-    echo "You are at $(pwd)";
-  elif [[ -z "$1" ]] then
-    cd $repo_path
-  else
-    selection=$(cd $repo_path && find $repo_path -type d -maxdepth 2 | grep -v "node_modules" | fzf --query="$1")
-    if [[ -n "$selection" ]] then
-      cd $selection
-    fi
-  fi
 }
 
 eval "$(zoxide init zsh)"
 
-export GOPATH=$HOME/go
-path+=$GOPATH/bin
-path+=$HOME/bin
-
-#export VOLTA_HOME="$HOME/.volta"
-#export PATH="$VOLTA_HOME/bin:$PATH"
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="$HOME/.sdkman"
-#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
