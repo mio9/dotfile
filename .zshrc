@@ -36,16 +36,16 @@ zinit light "mio9/zsh-git-jump"
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 
 
-alias ls='exa'
+alias ls='eza'
 alias l='ls'
-alias ll='exa -l'
-# alias nvim='lvim'
+alias ll='eza -l'
 alias vim='nvim'
 alias lg='lazygit'
 alias lad='lazydocker'
 alias t='tmux'
 alias zl='zellij'
 alias zt='zerotier-cli'
+alias code='codium'
 
 whothefuckami(){
   echo "Bruh wakeup, you're motherfucking $(whoami) mate, you even ask who tf you are..!?"
@@ -59,3 +59,18 @@ eval "$(zoxide init zsh)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# bun completions
+[ -s "/Users/mio9/.bun/_bun" ] && source "/Users/mio9/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# personal bins
+export PATH="$HOME/bin:$PATH"
+
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "`fnm env`"
+fi
