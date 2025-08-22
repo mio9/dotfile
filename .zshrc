@@ -47,6 +47,14 @@ alias zl='zellij'
 alias zt='zerotier-cli'
 alias code='codium'
 
+# docker compose stuffs
+updown ()
+{
+  docker compose down && docker compose up -d
+}
+alias ddown='docker compose down'
+alias dup='docker compose up -d'
+
 whothefuckami(){
   echo "Bruh wakeup, you're motherfucking $(whoami) mate, you even ask who tf you are..!?"
 }
