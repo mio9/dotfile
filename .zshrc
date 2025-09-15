@@ -74,8 +74,13 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
 # personal bins
 export PATH="$HOME/bin:$PATH"
+
+# go bins
+path+="$HOME/go"
+
 
 # fnm
 FNM_PATH="/opt/homebrew/opt/fnm/bin"
