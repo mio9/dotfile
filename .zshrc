@@ -79,7 +79,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 # go bins
-path+="$HOME/go"
+path+="$HOME/go/bin"
 
 
 # fnm
