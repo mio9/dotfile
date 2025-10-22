@@ -1,19 +1,20 @@
 #!/bin/bash
 ext="${1:-m4a}"
 outext="${2:-flac}"
-echo Found following $ext files:
+ffmpeg_args="${3:-}"
+echo Found following "$ext" files:
 ls *.$ext
 # if last command exited with error
 if [ $? -ne 0 ]; then
-  echo No $ext files found
+  echo No "$ext" files found
   exit 1
 fi
 echo ----
-echo Converting them to $outext
+echo Converting them to $outext with args $ffmpeg_args
 read -p "Ok about that? [Yn]" -n 1 -r
 # prompt
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
 fi
-for i in *.$ext; do ffmpeg -i "$i" "${i%.*}.$outext"; done
-echo done
+for i in *.$ext; do ffmpeg -i "$i" $ffmpeg_args "${i%.*}.$outext"; done
+echo "done"
