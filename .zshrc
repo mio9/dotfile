@@ -76,7 +76,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # personal bins
-export PATH="$HOME/bin:$PATH"
+path+="$HOME/bin"
 
 # go bins
 path+="$HOME/go/bin"
