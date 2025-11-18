@@ -32,6 +32,7 @@ zinit light "zsh-users/zsh-completions"
 zinit light "changyuheng/zsh-interactive-cd"
 zinit light "zsh-users/zsh-syntax-highlighting"
 zinit light "mio9/zsh-git-jump"
+zinit light "mio9/zsh-docker-compose"
 
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 
@@ -47,14 +48,6 @@ alias zl='zellij'
 alias zt='zerotier-cli'
 alias code='codium'
 alias lemmerun='xattr -dr com.apple.quarantine'
-
-# docker compose stuffs
-updown ()
-{
-  docker compose down && docker compose up -d
-}
-alias ddown='docker compose down'
-alias dup='docker compose up -d'
 
 whothefuckami(){
   echo "Bruh wakeup, you're motherfucking $(whoami) mate, you even ask who tf you are..!?"
