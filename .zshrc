@@ -46,6 +46,7 @@ alias t='tmux'
 alias zl='zellij'
 alias zt='zerotier-cli'
 alias code='codium'
+alias lemmerun='xattr -dr com.apple.quarantine'
 
 # docker compose stuffs
 updown ()
@@ -60,6 +61,9 @@ whothefuckami(){
 }
 mkcd () {
   mkdir "$1" && cd "$1"
+}
+ytdl(){
+  ytdlp -f bestvideo+bestaudio --cookies-from-browser brave --js-runtimes bun $1
 }
 
 eval "$(zoxide init zsh)"
