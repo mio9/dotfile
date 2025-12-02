@@ -1,20 +1,54 @@
-#!/bin/bash
-ext="${1:-m4a}"
-outext="${2:-flac}"
-ffmpeg_args="${3:-}"
-echo Found following "$ext" files:
-ls *.$ext
-# if last command exited with error
-if [ $? -ne 0 ]; then
-  echo No "$ext" files found
-  exit 1
-fi
-echo ----
-echo Converting them to $outext with args $ffmpeg_args
-read -p "Ok about that? [Yn]" -n 1 -r
-# prompt
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-  [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
-fi
-for i in *.$ext; do ffmpeg -i "$i" $ffmpeg_args "${i%.*}.$outext"; done
-echo "done"
+#!/usr/bin/env python3
+import sys
+import glob
+import subprocess
+import shlex
+from pathlib import Path
+
+ext = sys.argv[1] if len(sys.argv) > 1 else "m4a"
+outext = sys.argv[2] if len(sys.argv) > 2 else "flac"
+ffmpeg_opts = sys.argv[3:] if len(sys.argv) > 3 else []
+
+# Find all files with the extension
+files = glob.glob(f"*.{ext}")
+
+if not files:
+    print(f"No {ext} files found")
+    sys.exit(1)
+
+print(f"Found following {ext} files:")
+for f in files:
+    print(f)
+
+print("----")
+print(f"Converting them to {outext}")
+
+# Show example command using first file
+first_file = files[0]
+output_file = f"{Path(first_file).stem}.{outext}"
+opts_str = " ".join(ffmpeg_opts) if ffmpeg_opts else ""
+print("running following command:")
+print(f'ffmpeg -i {shlex.quote(first_file)} {opts_str} {shlex.quote(output_file)}')
+
+print("----")
+reply = input("Ok about that? [Yn] ")
+
+if reply and reply[0].lower() not in ['y', '']:
+    sys.exit(1)
+
+# Convert all files
+for file in files:
+    output_file = f"{Path(file).stem}-encoded.{outext}"
+    if not output_file:
+        print(f"Error: Could not determine output filename for {file}")
+        continue
+    # Build command string matching the display format
+    opts_str = " ".join(ffmpeg_opts) if ffmpeg_opts else ""
+    cmd_str = f'ffmpeg -i {shlex.quote(file)} {opts_str} {shlex.quote(output_file)}'
+    print(f"Running: {cmd_str}")
+    result = subprocess.run(cmd_str, shell=True, check=False)
+    if result.returncode != 0:
+        print(f"Error: ffmpeg failed with return code {result.returncode}")
+        sys.exit(1)
+
+print("done")
