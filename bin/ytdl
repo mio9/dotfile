@@ -12,10 +12,17 @@ def download_video(url, prefix=""):
     else:
         output_template = f"{os.getcwd()}/%(title)s.%(ext)s"
     
+    # Determine format based on URL
+    # SoundCloud: audio only, others: video+audio
+    if "soundcloud.com" in url.lower():
+        format_option = "bestaudio"
+    else:
+        format_option = "bestvideo+bestaudio"
+    
     # Build ytdlp command
     cmd = [
         "ytdlp",
-        "-f", "bestvideo+bestaudio",
+        "-f", format_option,
         "--cookies-from-browser", "brave",
         "--js-runtimes", "bun",
         "-o", output_template,
